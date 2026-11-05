@@ -2180,8 +2180,8 @@ fn themed_docx(body: &str, styles: &str, settings: Option<&str>) -> Document {
     wordcraft_docx::read(&docx(body, &doc_rels, &extra)).unwrap()
 }
 
-/// A percentage pattern mixes its theme colours (`w:themeColor`, `w:themeFill`), not the
-/// fixed ones Word writes next to them.
+/// A percentage pattern mixes its theme colours (`w:themeColor`, `w:themeFill`), not the fixed
+/// ones beside them: a theme colour supersedes `w:color` and `w:fill` (ECMA-376 Part 1 §17.3.5).
 #[test]
 fn percentage_shading_mixes_theme_colours() {
     let body = r#"<w:p><w:pPr><w:shd w:val="pct50" w:color="000000" w:themeColor="accent1" w:fill="FFFFFF"/></w:pPr></w:p>
